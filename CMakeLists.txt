@@ -27,7 +27,7 @@ function(SUBDIRLIST result_var curdir)
   )
 endfunction()
 
-function(addboost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
+function(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
          BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED target_to_link_to
          return_var_name_boost_install_targets
 )
