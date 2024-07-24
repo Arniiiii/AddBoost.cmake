@@ -4,6 +4,10 @@
 
 Versions tested: from 1.79.0 upto 1.85.0 .
 
+## Examples
+
+- [x] [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake)
+
 ## How to use:
 
 1. Add [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake?tab=readme-ov-file#adding-cpm) in your project somehow (or if you know how, use ExternalProject or FetchContent).
