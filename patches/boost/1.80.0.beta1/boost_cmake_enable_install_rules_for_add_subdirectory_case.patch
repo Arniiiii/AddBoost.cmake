@@ -1,0 +1,13 @@
+diff --git a/tools/cmake/include/BoostRoot.cmake b/tools/cmake/include/BoostRoot.cmake
+index e93f9071..f0380b39 100644
+--- a/tools/cmake/include/BoostRoot.cmake
++++ b/tools/cmake/include/BoostRoot.cmake
+@@ -108,7 +108,7 @@ else()
+   endif()
+ 
+   set(BUILD_TESTING OFF)
+-  set(CMAKE_SKIP_INSTALL_RULES ON)
++  set(CMAKE_SKIP_INSTALL_RULES OFF)
+ 
+ endif()
+ 
