@@ -20,7 +20,7 @@ CPMAddPackage(
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
-3. Use the `addboost` function:
+3. Use the `add_boost` function:
 ```cmake
 set(TRY_BOOST_VERSION "1.85.0")
 set(BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "thread")
