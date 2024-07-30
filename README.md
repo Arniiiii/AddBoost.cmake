@@ -28,7 +28,7 @@ set(BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "asio")
 
 add_boost(
   ${TRY_BOOST_VERSION} ${BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}
-  ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED} your_target_name boost_install_targets
+  ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED} your_target_name
 )
 ```
 4. Add Boost's install target (notice `${boost_install_targets}`):
@@ -56,7 +56,7 @@ packageProject(
   VERSION_HEADER "${VERSION_HEADER_LOCATION}" 
   EXPORT_HEADER "${EXPORT_HEADER_LOCATION}"
   COMPATIBILITY "AnyNewerVersion" DISABLE_VERSION_SUFFIX ON
-  DEPENDENCIES "${boost_install_targets}"
+  DEPENDENCIES "${ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS}"
 )
 
 ```
