@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 # Note: update this to your new project's name and version
 project(
   AddBoost.cmake
-  VERSION 1.0
+  VERSION 1.1
   LANGUAGES CXX
 )
 
@@ -116,6 +116,7 @@ function(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
       )
       CPMAddPackage(
         NAME Boost
+        VERSION ${TRY_BOOST_VERSION}
         URL ${BOOST_URL} PATCHES ${patches_for_boost}
         OPTIONS "BOOST_ENABLE_CMAKE ON" "BOOST_SKIP_INSTALL_RULES OFF"
       )
@@ -126,6 +127,7 @@ function(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
       )
       CPMAddPackage(
         NAME Boost
+        VERSION ${TRY_BOOST_VERSION}
         URL ${BOOST_URL}
         OPTIONS "BOOST_SKIP_INSTALL_RULES OFF"
       )
@@ -136,6 +138,7 @@ function(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
       )
       CPMAddPackage(
         NAME Boost
+        VERSION ${TRY_BOOST_VERSION}
         GIT_REPOSITORY "https://github.com/boostorg/boost"
         GIT_TAG "boost-${TRY_BOOST_VERSION}" PATCHES ${patches_for_boost}
         OPTIONS "BOOST_ENABLE_CMAKE ON" "BOOST_SKIP_INSTALL_RULES OFF"
