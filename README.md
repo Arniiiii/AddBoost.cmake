@@ -61,17 +61,18 @@ packageProject(
 
 ```
 
-
 ## Features:  
 
  - [x] Find local Boost
- - [x] Download boost if there's with lower version than needed or if `-DCPM_DOWNLOAD_ALL=1` 
+ - [x] Download boost if there's local Boost with lower version than needed or if `-DCPM_DOWNLOAD_ALL=1` 
  - [x] Links Boost to what target you need by itself
  - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm`
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
  - [x] Makes Boost generate appropriate install targets
  - [x] If you download Boost, you can add additional configuring options just by setting them before calling function.
  - [x] Well tested at [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake)
+ - [x] You can apply your options or by setting it by your self, or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
+ - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost.
  - [x] You can apply your patches to Boost. Define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/

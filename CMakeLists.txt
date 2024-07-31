@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 # Note: update this to your new project's name and version
 project(
   AddBoost.cmake
-  VERSION 2.0
+  VERSION 2.1
   LANGUAGES CXX
 )
 
@@ -86,30 +86,40 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     endif()
   endif()
 
-  if(patches_for_boost AND NOT boost_is_old)
+  if(DEFINED BOOST_USE_MY_BOOST_DIRECTORY)
+    CPMAddPackage(
+      NAME Boost
+      VERSION ${TRY_BOOST_VERSION}
+      SOURCE_DIR ${BOOST_USE_MY_BOOST_DIRECTORY}
+      PATCHES ${patches_for_boost}
+      FIND_PACKAGE_ARGUMENTS "COMPONENTS ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
+      OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
+    )
+  endif()
+  if(patches_for_boost AND NOT boost_is_old) # is it 1.80.0 < x < 1.84.0
     CPMAddPackage(
       NAME Boost
       VERSION ${TRY_BOOST_VERSION}
       URL ${BOOST_URL} PATCHES ${patches_for_boost}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
-      OPTIONS "BOOST_ENABLE_CMAKE ON" "BOOST_SKIP_INSTALL_RULES OFF"
+      OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
     )
-  elseif(NOT boost_is_old)
+  elseif(NOT boost_is_old) # is it 1.85.0+ ?
     CPMAddPackage(
       NAME Boost
       VERSION ${TRY_BOOST_VERSION}
       URL ${BOOST_URL}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
-      OPTIONS "BOOST_SKIP_INSTALL_RULES OFF"
+      OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
     )
-  else()
+  else() # is it <1.80.0 ?
     CPMAddPackage(
       NAME Boost
       VERSION ${TRY_BOOST_VERSION}
       GIT_REPOSITORY "https://github.com/boostorg/boost"
       GIT_TAG "boost-${TRY_BOOST_VERSION}" PATCHES ${patches_for_boost}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
-      OPTIONS "BOOST_ENABLE_CMAKE ON" "BOOST_SKIP_INSTALL_RULES OFF"
+      OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
     )
   endif()
 
