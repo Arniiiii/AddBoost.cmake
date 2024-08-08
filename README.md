@@ -16,19 +16,20 @@ Versions tested: from 1.79.0 upto 1.85.0 .
 ```cmake
 CPMAddPackage(
   NAME AddBoost.CMake
-  GIT_TAG main
+  GIT_TAG 3.0
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
-3. Use the `add_boost` function:
+3. Use the `add_boost` macro. Notice *NOT* wrapping variables TRY_BOOST_VERSION and so on when sending arguments to the macro
 ```cmake
 set(TRY_BOOST_VERSION "1.85.0")
-set(BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "thread")
-set(BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "asio")
+set(BOOST_MY_OPTIONS "BOOST_ENABLE_PYTHON ON;")
+set(BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "thread;python")
+set(BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "asio;uuid")
 
 add_boost(
-  ${TRY_BOOST_VERSION} ${BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}
-  ${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED} your_target_name
+  TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
+  BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED your_target_name your_target_name2 your_target_name...
 )
 ```
 4. Add Boost's install target (notice `${boost_install_targets}`):
@@ -64,15 +65,17 @@ packageProject(
 ## Features:  
 
  - [x] Find local Boost
- - [x] Download boost if there's local Boost with lower version than needed or if `-DCPM_DOWNLOAD_ALL=1` 
- - [x] Links Boost to what target you need by itself
- - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm`
+ - [x] Download boost if there's local Boost with lower version than needed or if local Boost doesn't exist on the system or if `-DCPM_DOWNLOAD_ALL=1` is set 
+ - [x] Links Boost to what targets you need by itself
+ - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm` or something like.
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
  - [x] Makes Boost generate appropriate install targets
  - [x] If you download Boost, you can add additional configuring options just by setting them before calling function.
  - [x] Well tested at [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake)
  - [x] You can apply your options or by setting it by your self, or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
  - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost.
+ - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function.
+ - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `addboost(...)` macro.
  - [x] You can apply your patches to Boost. Define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
