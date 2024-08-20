@@ -2,7 +2,7 @@
 
 ## Find or download Boost from CMake. 
 
-Versions tested: from 1.79.0 upto 1.85.0 .
+Versions tested: from 1.79.0 upto 1.86.0 .
 
 ## Examples
 
@@ -22,7 +22,7 @@ CPMAddPackage(
 ```
 3. Use the `add_boost` macro. Notice *NOT* wrapping variables TRY_BOOST_VERSION and so on when sending arguments to the macro
 ```cmake
-set(TRY_BOOST_VERSION "1.85.0")
+set(TRY_BOOST_VERSION "1.86.0")
 set(BOOST_MY_OPTIONS "BOOST_ENABLE_PYTHON ON;")
 set(BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "thread;python")
 set(BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "asio;uuid")
