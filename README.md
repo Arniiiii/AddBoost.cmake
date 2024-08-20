@@ -16,7 +16,7 @@ Versions tested: from 1.79.0 upto 1.85.0 .
 ```cmake
 CPMAddPackage(
   NAME AddBoost.CMake
-  GIT_TAG 3.0
+  GIT_TAG 3.1
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
@@ -76,6 +76,7 @@ packageProject(
  - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost.
  - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function.
  - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `addboost(...)` macro.
+ - [x] You can use `ADDBOOSTCMAKE_LINK_TYPE` to override default behaviour of linking: if target is INTERFACE, use INTERFACE, if else: PUBLIC
  - [x] You can apply your patches to Boost. Define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
