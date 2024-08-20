@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 # Note: update this to your new project's name and version
 project(
   AddBoost.cmake
-  VERSION 3.1
+  VERSION 3.2
   LANGUAGES CXX
 )
 
@@ -168,22 +168,24 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     if(NOT DEFINED ADDBOOSTCMAKE_LINK_TYPE)
       get_target_property(type ${target} TYPE)
       if("${type}" STREQUAL "INTERFACE_LIBRARY")
-        set(ADDBOOSTCMAKE_LINK_TYPE "INTERFACE")
+        set(ADDBOOSTCMAKE_LINK_TYPE_VALUE "INTERFACE")
       else()
-        set(ADDBOOSTCMAKE_LINK_TYPE "PUBLIC")
+        set(ADDBOOSTCMAKE_LINK_TYPE_VALUE "PUBLIC")
       endif()
+    else()
+      set(ADDBOOSTCMAKE_LINK_TYPE_VALUE ${ADDBOOSTCMAKE_LINK_TYPE})
     endif()
     if(Boost_ADDED STREQUAL "")
-      target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE} Boost::boost)
+      target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE_VALUE} Boost::boost)
     else()
       foreach(a_lib ${${BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
-        target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE}
+        target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE_VALUE}
                               Boost::${a_lib})
       endforeach()
     endif()
 
     foreach(a_lib ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
-      target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE}
+      target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE_VALUE}
                             Boost::${a_lib})
     endforeach()
   endforeach()
