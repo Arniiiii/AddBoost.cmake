@@ -145,10 +145,10 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
 
   # Link dependencies
   foreach(target IN LISTS targets_to_link_to)
-    if(DEFINED Boost_ADDED)
-      message(DEBUG "Boost_ADDED is defined \$\{Boost_ADDED\}: ${Boost_ADDED}")
+    if(DEFINED Boost_LOCAL)
+      message(DEBUG "Boost_LOCAL is defined \$\{Boost_LOCAL\}: ${Boost_LOCAL}")
     else()
-      message(DEBUG "Boost_ADDED is not defined.")
+      message(DEBUG "Boost_LOCAL is not defined.")
     endif()
     if(NOT DEFINED ADDBOOSTCMAKE_LINK_TYPE)
       get_target_property(type ${target} TYPE)
@@ -160,7 +160,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     else()
       set(ADDBOOSTCMAKE_LINK_TYPE_VALUE ${ADDBOOSTCMAKE_LINK_TYPE})
     endif()
-    if(Boost_ADDED STREQUAL "" OR Boost_ADDED STREQUAL "NO")
+    if(Boost_LOCAL STREQUAL "YES")
       target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE_VALUE} Boost::boost)
     else()
       foreach(a_lib ${${BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
@@ -172,7 +172,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
       target_link_libraries(${target} ${ADDBOOSTCMAKE_LINK_TYPE_VALUE} Boost::${a_lib})
     endforeach()
   endforeach()
-  if(Boost_ADDED STREQUAL "" OR Boost_ADDED STREQUAL "NO")
+  if(Boost_LOCAL STREQUAL "YES")
     set(ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS
         "Boost ${${TRY_BOOST_VERSION}} REQUIRED ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}}"
     )
