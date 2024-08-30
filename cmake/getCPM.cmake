@@ -1,9 +1,7 @@
 # ===============================================================================
 
-# This file should be like getCPM.cmake from CPM project. Though, because there's a logical error at
-# finding local boost ( if error, not much explanation why ) there's a problem that is going to be
-# fixed in PR https://github.com/cpm-cmake/CPM.cmake/pull/589 , here is just CPM.cmake file from the
-# project with a patch from this PR.
+# This file should be like getCPM.cmake from CPM project. But it's too long to wait until a PR is
+# merged. So we use here a my version.
 
 # =============================================================================
 # from release
@@ -30,13 +28,12 @@
 # include(${CPM_DOWNLOAD_LOCATION})
 #
 
-
 # =============================================================================
 # my version:
 # =============================================================================
 
-# set(CPM_DOWNLOAD_VERSION 0.40.2)
-# set(CPM_HASH_SUM "c8cdc32c03816538ce22781ed72964dc864b2a34a310d3b7104812a5ca2d835d")
+# set(CPM_DOWNLOAD_VERSION 0.40.2) set(CPM_HASH_SUM
+# "c8cdc32c03816538ce22781ed72964dc864b2a34a310d3b7104812a5ca2d835d")
 
 if(CPM_SOURCE_CACHE)
   set(CPM_DOWNLOAD_LOCATION "${CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
@@ -49,8 +46,7 @@ endif()
 # Expand relative path. This is important if the provided path contains a tilde (~)
 get_filename_component(CPM_DOWNLOAD_LOCATION ${CPM_DOWNLOAD_LOCATION} ABSOLUTE)
 
-file(DOWNLOAD
-     https://raw.githubusercontent.com/Arniiiii/CPM.cmake/master/cmake/CPM.cmake
+file(DOWNLOAD https://raw.githubusercontent.com/Arniiiii/CPM.cmake/main/cmake/CPM.cmake
      ${CPM_DOWNLOAD_LOCATION} # EXPECTED_HASH SHA256=${CPM_HASH_SUM}
 )
 

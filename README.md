@@ -16,7 +16,7 @@ Versions tested: from 1.79.0 upto 1.86.0 .
 ```cmake
 CPMAddPackage(
   NAME AddBoost.CMake
-  GIT_TAG 3.1
+  GIT_TAG 3.3
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
