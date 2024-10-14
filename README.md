@@ -20,7 +20,7 @@ CPMAddPackage(
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
-3. Use the `add_boost` macro. Notice *NOT* wrapping variables TRY_BOOST_VERSION and so on when sending arguments to the macro
+3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION in `${}` and so on when sending arguments to the macro
 ```cmake
 set(TRY_BOOST_VERSION "1.86.0")
 set(BOOST_MY_OPTIONS "BOOST_ENABLE_PYTHON ON;")
@@ -32,7 +32,7 @@ add_boost(
   BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED your_target_name your_target_name2 your_target_name...
 )
 ```
-4. Add Boost's install target (notice `${boost_install_targets}`):
+4. Add Boost's install target (notice `${ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS}`):
 ```cmake
 string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
 string(TOLOWER ${PROJECT_NAME}/export.h EXPORT_HEADER_LOCATION)
