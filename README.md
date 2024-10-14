@@ -20,7 +20,7 @@ CPMAddPackage(
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
-3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION in `${}` and so on when sending arguments to the macro
+3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION and so on in `${}` when sending arguments to the macro
 ```cmake
 set(TRY_BOOST_VERSION "1.86.0")
 set(BOOST_MY_OPTIONS "BOOST_ENABLE_PYTHON ON;")
