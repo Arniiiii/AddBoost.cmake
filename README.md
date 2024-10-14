@@ -64,8 +64,8 @@ packageProject(
 
 ## Features:  
 
- - [x] Find local Boost
- - [x] Download boost if there's local Boost with lower version than needed or if local Boost doesn't exist on the system or if `-DCPM_DOWNLOAD_ALL=1` is set 
+ - [x] Find local Boost ( set `-DCPM_USE_LOCAL_PACKAGES=1` for finding and if failed to download. Set `-DCPM_LOCAL_PACKAGES_ONLY=1` to only look for installed Boost and emit error if failed to find)
+ - [x] Download boost ( if `-DCPM_USE_LOCAL_PACKAGES=1` and there's installed Boost with lower version than needed or if installed Boost doesn't exist on the system or if `-DCPM_DOWNLOAD_ALL=1` is set 
  - [x] Links Boost to what targets you need by itself
  - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm` or something like.
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
