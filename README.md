@@ -76,6 +76,7 @@ packageProject(
  - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function: copy and paste some last parts of the main CMakeLists.txt of the project and adjust for yourself.
  - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `add_boost(...)` macro.
  - [x] You can use `ADDBOOSTCMAKE_LINK_TYPE` to override default behaviour of linking: if target is INTERFACE, use INTERFACE, if else: PUBLIC
+ - [ ] Internally, this uses my fork of CPM with better logging handling. Waiting until PRs for CPM are going to be reviewed...
  - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `add_boost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
