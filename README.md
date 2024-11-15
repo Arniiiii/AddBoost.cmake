@@ -32,7 +32,7 @@ add_boost(
   BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED your_target_name your_target_name2 your_target_name...
 )
 ```
-4. Add Boost's install target (notice `${ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS}`):
+4. Add Boost's install target (notice `${ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS}`): (Assumed that your target is named `${PROJECT_NAME}`)
 ```cmake
 string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
 string(TOLOWER ${PROJECT_NAME}/export.h EXPORT_HEADER_LOCATION)
@@ -70,13 +70,13 @@ packageProject(
  - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm` or something like.
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
  - [x] Makes Boost generate appropriate install targets
- - [x] If you download Boost, you can add additional configuring options just by either setting them before calling ~~function~~ macro `addboost(...)` or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
+ - [x] If you download Boost, you can add additional configuring options just by either setting them before calling ~~function~~ macro `add_boost(...)` or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
  - [x] Well tested at [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake)
- - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost before calling the ~~function~~ macro `addboost(...)`.
+ - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost before calling the ~~function~~ macro `add_boost(...)`.
  - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function: copy and paste some last parts of the main CMakeLists.txt of the project and adjust for yourself.
- - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `addboost(...)` macro.
+ - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `add_boost(...)` macro.
  - [x] You can use `ADDBOOSTCMAKE_LINK_TYPE` to override default behaviour of linking: if target is INTERFACE, use INTERFACE, if else: PUBLIC
- - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `addboost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
+ - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `add_boost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
 └── boost
