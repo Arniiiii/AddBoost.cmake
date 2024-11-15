@@ -71,7 +71,7 @@ packageProject(
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
  - [x] Makes Boost generate appropriate install targets
  - [x] If you download Boost, you can add additional configuring options just by either setting them before calling ~~function~~ macro `add_boost(...)` or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
- - [x] Well tested at [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake)
+ - [x] Little bit tested at [Arniiiii/ModernCppStarterExampleBoostCmake](https://github.com/Arniiiii/ModernCppStarterExampleBoostCmake) and at some of my projects.
  - [x] If you have your own Boost directory, set `BOOST_USE_MY_BOOST_DIRECTORY` to be the path with your Boost before calling the ~~function~~ macro `add_boost(...)`.
  - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function: copy and paste some last parts of the main CMakeLists.txt of the project and adjust for yourself.
  - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `add_boost(...)` macro.
