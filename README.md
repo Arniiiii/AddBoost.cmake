@@ -67,7 +67,7 @@ packageProject(
  - [x] Find local Boost ( set `-DCPM_USE_LOCAL_PACKAGES=1` for finding and if failed to download. Set `-DCPM_LOCAL_PACKAGES_ONLY=1` to only look for installed Boost and emit error if failed to find)
  - [x] Download boost ( if `-DCPM_USE_LOCAL_PACKAGES=1` and there's installed Boost with lower version than needed or if installed Boost doesn't exist on the system or if `-DCPM_DOWNLOAD_ALL=1` is set 
  - [x] Links Boost to what targets you need by itself
- - [x] If you don't want to download Boost multiple times, set `-DCPM_SOURCE_CACHE=./.cache/cpm` or something like.
+ - [x] If you don't want to download Boost multiple times (when you deleted `build` folder and going to reconfigure), set `-DCPM_SOURCE_CACHE=./.cache/cpm` or something like.
  - [x] Gives appropriate string for you to add to [`PackageProject.cmake`](https://github.com/TheLartians/PackageProject.cmake)
  - [x] Makes Boost generate appropriate install targets
  - [x] If you download Boost, you can add additional configuring options just by either setting them before calling ~~function~~ macro `add_boost(...)` or by setting `BOOST_MY_OPTIONS` to something like `"OPTION value;OPTION2 value;"` for example `BOOST_ENABLE_PYTHON ON;` .
