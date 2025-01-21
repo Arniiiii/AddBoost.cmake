@@ -2,7 +2,7 @@
 
 ## Find or download Boost from CMake. 
 
-Versions tested: from 1.79.0 upto 1.86.0 .
+Versions tested: from 1.79.0 upto 1.87.0 .
 
 ## Examples
 
