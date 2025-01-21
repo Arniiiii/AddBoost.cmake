@@ -4,34 +4,29 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 # ---- Project ----
 
-# Note: update this to your new project's name and version
-project(
-  AddBoost.cmake
-  VERSION 3.6
-  LANGUAGES CXX
-)
+set(PackageProject.cmake_VERSION 3.6)
 
 option(${PROJECT_NAME}_INSTALL "Install the script at local system?" NO)
 
 configure_file(
-  ${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost/AddBoostConfig.cmake.in ${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost/AddBoostConfig.cmake
+  ${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake.in ${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake
   @ONLY
 )
 
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost/AddBoostConfig.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake)
 
-if(${${PROJECT_NAME}_INSTALL})
+if(${AddBoost.cmake_INSTALL})
   include(GNUInstallDirs)
 
   set(CMAKEDIR
-      ${CMAKE_INSTALL_DATADIR}/cmake
+      ${CMAKE_INSTALL_DATADIR}/cmake/AddBoost.cmake/
       CACHE
         PATH
-        "Path to a folder to which install the script AddBoostConfig.cmake . By default: ${CMAKE_INSTALL_DATADIR}/cmake/AddBoostConfig/"
+        "Path to a folder to which install the script AddBoostConfig.cmake . By default: ${CMAKE_INSTALL_DATADIR}/cmake/AddBoost.cmake/"
   )
 
-  install(FILES "${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost/AddBoostConfig.cmake" DESTINATION "${CMAKEDIR}")
+  install(FILES "${CMAKE_CURRENT_LIST_DIR}/cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake" DESTINATION "${CMAKEDIR}")
 
-  message(STATUS "Use `find_package(AddBoost)` to use it")
+  message(STATUS "Use `find_package(AddBoost.cmake)` to use it")
 
 endif()
