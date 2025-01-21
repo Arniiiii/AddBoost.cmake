@@ -1,3 +1,5 @@
+# Copyright 2025 Arniiiii lg3dx6fd@gmail.com MIT license
+
 # ===============================================================================
 
 # This file should be like getCPM.cmake from CPM project. But it's too long to wait until a PR is
@@ -37,23 +39,17 @@
 
 if(NOT DEFINED CPM_DOWNLOAD_LOCATION AND NOT DEFINED ENV{CPM_DOWNLOAD_LOCATION})
   if(CPM_SOURCE_CACHE)
-    set(CPM_DOWNLOAD_LOCATION
-        "${CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
+    set(CPM_DOWNLOAD_LOCATION "${CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
   elseif(DEFINED ENV{CPM_SOURCE_CACHE})
-    set(CPM_DOWNLOAD_LOCATION
-        "$ENV{CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
+    set(CPM_DOWNLOAD_LOCATION "$ENV{CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
   else()
-    set(CPM_DOWNLOAD_LOCATION
-        "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
+    set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
   endif()
 
-  # Expand relative path. This is important if the provided path contains a
-  # tilde (~)
-  get_filename_component(CPM_DOWNLOAD_LOCATION ${CPM_DOWNLOAD_LOCATION}
-                         ABSOLUTE)
+  # Expand relative path. This is important if the provided path contains a tilde (~)
+  get_filename_component(CPM_DOWNLOAD_LOCATION ${CPM_DOWNLOAD_LOCATION} ABSOLUTE)
 
-  file(DOWNLOAD
-       https://raw.githubusercontent.com/Arniiiii/CPM.cmake/main/cmake/CPM.cmake
+  file(DOWNLOAD https://raw.githubusercontent.com/Arniiiii/CPM.cmake/main/cmake/CPM.cmake
        ${CPM_DOWNLOAD_LOCATION} # EXPECTED_HASH SHA256=${CPM_HASH_SUM}
   )
 endif()
