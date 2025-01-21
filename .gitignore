@@ -9,4 +9,4 @@ cmake_build*/
 install_dir/
 compile_commands.json
 
-/cmake/AddBoost.cmake
+/cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake

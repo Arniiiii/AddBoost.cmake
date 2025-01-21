@@ -3,11 +3,8 @@
 # ---- Project ----
 
 # Note: update this to your new project's name and version
-project(
-  @PROJECT_NAME@
-  VERSION @PROJECT_VERSION@
-  LANGUAGES CXX
-)
+
+set(PackageProject.cmake_VERSION @PackageProject.cmake_VERSION@)
 
 function(SUBDIRLIST result_var curdir)
   file(
