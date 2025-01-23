@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 # ---- Project ----
 
-set(PackageProject.cmake_VERSION 3.6)
+set(AddBoost.cmake_VERSION 3.6)
 
 option(${PROJECT_NAME}_INSTALL "Install the script at local system?" NO)
 
