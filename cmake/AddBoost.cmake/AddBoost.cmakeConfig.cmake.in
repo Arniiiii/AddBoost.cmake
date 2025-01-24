@@ -4,7 +4,7 @@
 
 # Note: update this to your new project's name and version
 
-set(PackageProject.cmake_VERSION @PackageProject.cmake_VERSION@)
+set(AddBoost.cmake_VERSION @AddBoost.cmake_VERSION@)
 
 function(SUBDIRLIST result_var curdir)
   file(
@@ -171,8 +171,11 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
   endforeach()
   if(Boost_LOCAL STREQUAL "YES")
     set(ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS
-        "Boost ${${TRY_BOOST_VERSION}} REQUIRED ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}}"
+        "Boost ${${TRY_BOOST_VERSION}} REQUIRED"
     )
+    foreach(dep  ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
+      string(APPEND ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS " ${dep}")
+    endforeach()
   else()
     set(ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS "")
     set(BOOST_ALL_DEPENDENCIES
