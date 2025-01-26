@@ -10,3 +10,4 @@ install_dir/
 compile_commands.json
 
 /cmake/AddBoost.cmake/AddBoost.cmakeConfig.cmake
+/cmake/AddBoost.cmake/AddBoost.cmakeConfigVersion.cmake
