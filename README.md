@@ -77,10 +77,9 @@ packageProject(
  - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `add_boost(...)` macro.
  - [x] You can use `ADDBOOSTCMAKE_LINK_TYPE` to override default behaviour of linking: if target is INTERFACE, use INTERFACE, if else: PUBLIC
  - [x] Correctly handles attempts to get beta versions like `boost-1.88.0.beta1`, since `find_package` considers such version as incorrect, but we understand what you mean ^_^
- - [x] You can install the AddBoost.cmake on your SYSTEM !!! Use `-DAddBoost.cmake_INSTALL=ON` command line option and enjoy! And yes, it supports versioning!
+ - [x] You can install the AddBoost.cmake on your SYSTEM !!! Use `-DAddBoost.cmake_INSTALL=ON` command line option at configuring and install as a usual CMake package. And yes, it supports versioning! `find_package(AddBoost.cmake 3.7.2)`
  - [ ] Internally, this uses my fork of CPM with better logging handling. Waiting until PRs for CPM are going to be reviewed...
  - [ ] Cannot check existence of header only components of installed Boost, since it relies on functionality of `find_package(Boost ${VERSION} ${COMPONENTS})`. Therefore, set version of Boost you need so that it have the library.
- - [x] You can install it as a utility module. Use `AddBoost.cmake_INSTALL` option at configuring and use `find_package(AddBoost.cmake)`
  - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `add_boost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
