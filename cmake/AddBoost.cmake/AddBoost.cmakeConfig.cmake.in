@@ -54,6 +54,12 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     set(boost_is_old TRUE)
   endif()
 
+  if("${${TRY_BOOST_VERSION}}" MATCHES "\\.beta1")
+    string(REGEX REPLACE "\\.beta." "" boost_find_package_version "${${TRY_BOOST_VERSION}}")
+  else()
+    set(boost_find_package_version "${${TRY_BOOST_VERSION}}")
+  endif()
+
   set(patches_for_boost "")
 
   file(GLOB global_patches_for_boost CONFIGURE_DEPENDS
@@ -104,7 +110,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
   if(DEFINED BOOST_USE_MY_BOOST_DIRECTORY)
     CPMAddPackage(
       NAME Boost
-      VERSION ${${TRY_BOOST_VERSION}}
+      VERSION "${boost_find_package_version}"
       SOURCE_DIR ${BOOST_USE_MY_BOOST_DIRECTORY} PATCHES ${patches_for_boost}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${ESCAPED_BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
       OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
@@ -112,7 +118,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
   elseif(patches_for_boost AND NOT boost_is_old) # is it 1.80.0 < x < 1.84.0
     CPMAddPackage(
       NAME Boost
-      VERSION ${${TRY_BOOST_VERSION}}
+      VERSION "${boost_find_package_version}"
       URL ${BOOST_URL} PATCHES ${patches_for_boost}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${ESCAPED_BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
       OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
@@ -120,7 +126,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
   elseif(NOT boost_is_old) # is it 1.85.0+ ?
     CPMAddPackage(
       NAME Boost
-      VERSION ${${TRY_BOOST_VERSION}}
+      VERSION "${boost_find_package_version}"
       URL ${BOOST_URL}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${ESCAPED_BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
       OPTIONS "BOOST_ENABLE_CMAKE ON;BOOST_SKIP_INSTALL_RULES OFF;${BOOST_MY_OPTIONS}"
@@ -128,7 +134,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
   else() # is it <1.80.0 ?
     CPMAddPackage(
       NAME Boost
-      VERSION ${${TRY_BOOST_VERSION}}
+      VERSION "${boost_find_package_version}"
       GIT_REPOSITORY "https://github.com/boostorg/boost"
       GIT_TAG "boost-${${TRY_BOOST_VERSION}}" PATCHES ${patches_for_boost}
       FIND_PACKAGE_ARGUMENTS "COMPONENTS ${ESCAPED_BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}"
@@ -170,10 +176,8 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     endforeach()
   endforeach()
   if(Boost_LOCAL STREQUAL "YES")
-    set(ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS
-        "Boost ${${TRY_BOOST_VERSION}} REQUIRED"
-    )
-    foreach(dep  ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
+    set(ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS "Boost ${boost_find_package_version} REQUIRED")
+    foreach(dep ${${BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED}})
       string(APPEND ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS " ${dep}")
     endforeach()
   else()
@@ -183,7 +187,7 @@ macro(add_boost TRY_BOOST_VERSION BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED
     )
     foreach(dep ${BOOST_ALL_DEPENDENCIES})
       string(APPEND ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS
-             "boost_${dep} ${${TRY_BOOST_VERSION}};"
+             "boost_${dep} ${boost_find_package_version};"
       )
     endforeach()
     string(LENGTH "${ADDBOOSTCMAKE_PACKAGEPROJECT_INSTALL_TARGETS}"

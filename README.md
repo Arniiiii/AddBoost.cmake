@@ -2,7 +2,7 @@
 
 ## Find or download Boost from CMake. 
 
-Versions tested: from 1.79.0 upto 1.87.0 .
+Versions tested: from 1.79.0 upto 1.88.0.beta1 .
 
 ## Examples
 
@@ -11,18 +11,18 @@ Versions tested: from 1.79.0 upto 1.87.0 .
 ## How to use:
 
 1. Add [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake?tab=readme-ov-file#adding-cpm) in your project.
-2. Download `AddBoost.CMake` via CPM:
+2. Download `AddBoost.CMake` via CPM: (or install AddBoost.cmake system-wide, check [Features section](#features) of the document)
 
 ```cmake
 CPMAddPackage(
   NAME AddBoost.CMake
-  GIT_TAG 3.3
+  GIT_TAG 3.7.2
   GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
 )
 ```
-3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION and so on in `${}` when sending arguments to the macro
+3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION and so on in `"${}"` when sending arguments to the macro
 ```cmake
-set(TRY_BOOST_VERSION "1.86.0")
+set(TRY_BOOST_VERSION "1.88.0.beta1")
 set(BOOST_MY_OPTIONS "BOOST_ENABLE_PYTHON ON;")
 set(BOOST_NOT_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "thread;system")
 set(BOOST_HEADER_ONLY_COMPONENTS_THAT_YOU_NEED "asio;beast;uuid;container;cobalt")
@@ -62,7 +62,7 @@ packageProject(
 
 ```
 
-## Features:  
+## Features
 
  - [x] Finds local Boost ( you can set `-DCPM_USE_LOCAL_PACKAGES=1` for "looking for local Boost. if failed: download" mode. Set `-DCPM_LOCAL_PACKAGES_ONLY=1` to only look for installed Boost and emit error if failed to find)
  - [x] Downloads boost, if `-DCPM_USE_LOCAL_PACKAGES=1` and there's installed Boost with lower version than needed or if installed Boost doesn't exist on the system or if `-DCPM_DOWNLOAD_ALL=1` is set.
@@ -76,8 +76,11 @@ packageProject(
  - [x] If you want, you can link Boost libs yourself, since the code is macro, not a function: copy and paste some last parts of the main CMakeLists.txt of the project and adjust for yourself.
  - [x] You can link Boost libs automagically to multiple targets just by adding them to the end of the `add_boost(...)` macro.
  - [x] You can use `ADDBOOSTCMAKE_LINK_TYPE` to override default behaviour of linking: if target is INTERFACE, use INTERFACE, if else: PUBLIC
+ - [x] Correctly handles attempts to get beta versions like `boost-1.88.0.beta1`, since `find_package` considers such version as incorrect, but we understand what you mean ^_^
+ - [x] You can install the AddBoost.cmake on your SYSTEM !!! Use `-DAddBoost.cmake_INSTALL=ON` command line option and enjoy! And yes, it supports versioning!
  - [ ] Internally, this uses my fork of CPM with better logging handling. Waiting until PRs for CPM are going to be reviewed...
-- [x] You can install it as a utility module. Use `AddBoost.cmake_INSTALL` option at configuring and use `find_package(AddBoost.cmake)`
+ - [ ] Cannot check existence of header only components of installed Boost, since it relies on functionality of `find_package(Boost ${VERSION} ${COMPONENTS})`. Therefore, set version of Boost you need so that it have the library.
+ - [x] You can install it as a utility module. Use `AddBoost.cmake_INSTALL` option at configuring and use `find_package(AddBoost.cmake)`
  - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `add_boost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
