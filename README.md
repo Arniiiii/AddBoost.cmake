@@ -14,10 +14,11 @@ Versions tested: from 1.79.0 upto 1.88.0.beta1 .
 2. Download `AddBoost.CMake` via CPM: (or install AddBoost.cmake system-wide, check [Features section](#features) of the document)
 
 ```cmake
+set(AddBoost.cmake_VERSION 3.7.3)
 CPMAddPackage(
   NAME AddBoost.CMake
-  GIT_TAG 3.7.2
-  GITHUB_REPOSITORY Arniiiii/AddBoost.cmake
+  VERSION "${AddBoost.cmake_VERSION}"
+  URL "https://github.com/Arniiiii/AddBoost.cmake/archive/refs/tags/${AddBoost.cmake_VERSION}.tar.gz"
 )
 ```
 3. Use the `add_boost` macro. Notice *NOT* wrapping variables like TRY_BOOST_VERSION and so on in `"${}"` when sending arguments to the macro
@@ -80,6 +81,8 @@ packageProject(
  - [x] You can install the AddBoost.cmake on your SYSTEM !!! Use `-DAddBoost.cmake_INSTALL=ON` command line option at configuring and install as a usual CMake package. And yes, it supports versioning! `find_package(AddBoost.cmake 3.7.2)`
  - [ ] Internally, this uses my fork of CPM with better logging handling. Waiting until PRs for CPM are going to be reviewed...
  - [ ] Cannot check existence of header only components of installed Boost, since it relies on functionality of `find_package(Boost ${VERSION} ${COMPONENTS})`. Therefore, set version of Boost you need so that it have the library.
+ - [ ] (CPM's problem) Almost impossible to get a reason why it failed to use an installed Boost if `-DCPM_USE_LOCAL_PACKAGES=1`. Temporary solution: `-DCPN_LOCAL_PACKAGES_ONLY=1` will show the reason, but it has a problem too: it will make all CPM to only find packages, not add. But it works, trust me.
+ - [ ] (CPM's problem) To use patches or any version of Boost before 1.85.0, consider specifing any folder for caching downloaded sources via `-DCPM_SOURCE_CACHE=/path/to/a/folder/for/downloaded/sources/` . On Linux, you may use `~/.cache/cpm` (per user) , `./.cache/cpm` (per work folder) or whatever else.
  - [x] You can apply your patches to Boost. Before calling the ~~function~~ macro `add_boost(...)`, define variable `BOOST_ADD_MY_PATCHES` to be a path to folder in which there's  `*.patch` in such layout:
 ```
 patches/
