@@ -1,4 +1,4 @@
-# AddBoost.CMake
+# AddBoost.cmake
 
 ## Find or download Boost from CMake. 
 
