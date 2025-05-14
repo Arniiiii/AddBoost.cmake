@@ -16,7 +16,7 @@ Versions tested: from 1.79.0 upto 1.88.0.beta1 .
 ```cmake
 set(AddBoost.cmake_VERSION 3.7.3)
 CPMAddPackage(
-  NAME AddBoost.CMake
+  NAME AddBoost.cmake
   VERSION "${AddBoost.cmake_VERSION}"
   URL "https://github.com/Arniiiii/AddBoost.cmake/archive/refs/tags/${AddBoost.cmake_VERSION}.tar.gz"
 )
