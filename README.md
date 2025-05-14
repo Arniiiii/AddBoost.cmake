@@ -11,7 +11,7 @@ Versions tested: from 1.79.0 upto 1.88.0.beta1 .
 ## How to use:
 
 1. Add [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake?tab=readme-ov-file#adding-cpm) in your project.
-2. Download `AddBoost.CMake` via CPM: (or install AddBoost.cmake system-wide, check [Features section](#features) of the document)
+2. Download `AddBoost.cmake` via CPM: (or install AddBoost.cmake system-wide, check [Features section](#features) of the document)
 
 ```cmake
 set(AddBoost.cmake_VERSION 3.7.3)
