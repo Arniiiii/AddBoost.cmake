@@ -1,3 +1,10 @@
+## Important note of advice
+
+While this works, I would recommend using a real package manager like Conan, Gentoo's or Nix's ones, or vcpkg in a worse case. 
+You should not use CPM or FetchContent. Why? Because these two are not package managers. CPM, while has letters PM that stands for "package manager", is not a package manager. It is a wrapper of FetchContent with better interface. And FetchContent should not be used as primary way of getting dependencies. Why? Because it uses rule "first declaration of dependencies is the way we'll do it" and it's impossible to override this totally incorrect behaviour without insane overengineering.
+
+So, yeah, this project somehow works, but please, use a package manager instead, and not CPM, FetchContent or Hunter.
+
 # AddBoost.cmake
 
 ## Find or download Boost from CMake. 
